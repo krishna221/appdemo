@@ -17,16 +17,19 @@
         var myname = $("#namefield").val();
 
         var tsBefore = new Date().getTime();
+        var filePath = "http://hci.rwth-aachen.de/~subramanian/datasets/keyboards.csv";
         
         //perform the request
-        var req = ocpu.rpc("hello", {
-          myname : myname
-        }, function(output){
+        var req = ocpu.rpc("loadFile", 
+        {
+          filePath : filePath
+        }, function(output)
+        {
           var tsAfter = new Date().getTime();
 
           console.log("Latency = " + (tsAfter - tsBefore)/1000 + "s");
           
-          $("#output").text(output.message);
+          $("#output").text(output.dataset);
         });
         
         //if R returns an error, alert the error message
