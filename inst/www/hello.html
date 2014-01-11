@@ -15,11 +15,17 @@
         
         //read the value for 'myname'
         var myname = $("#namefield").val();
+
+        var tsBefore = new Date().getTime();
         
         //perform the request
         var req = ocpu.rpc("hello", {
           myname : myname
         }, function(output){
+          var tsAfter = new Date().getTime();
+
+          console.log("Latency = " + (tsAfter - tsBefore)/1000 + "s");
+          
           $("#output").text(output.message);
         });
         
